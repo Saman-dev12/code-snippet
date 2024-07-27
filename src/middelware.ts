@@ -10,11 +10,12 @@ interface ExtendedNextRequest extends NextRequest {
 export async function middleware(request: ExtendedNextRequest) {
   const path = request.nextUrl.pathname;
 
-  const isPublicPath = path === '/dashboard';
+  const isPublicPath = path === '/';
 
   // Retrieve user information securely
   const currentUser = await getDataFromToken(request);
   const user = await User.findById(currentUser).select("-password");
+
   if (!user) {
     return NextResponse.json({error:"User not found"});
   }

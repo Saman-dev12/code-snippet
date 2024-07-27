@@ -72,14 +72,14 @@ const Page = ({ params }: { params: any }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-auto py-10 bg-gray-900 text-white">
+    <div className="flex flex-col justify-center items-center h-[50rem] py-10 bg-gray-900 text-white">
       {loading ? ( // Conditional rendering of loading animation
         <div className="flex justify-center items-center text-white text-xl font-semibold py-8">
           <motion.div
             className="flex justify-center items-center h-auto p-auto "
-            initial={{ opacity: 0, scale: 0, rotate: 0 }}
-            animate={{ opacity: 1, scale: 1, rotate: 360 }}
-            exit={{ opacity: 0, scale: 0, rotate: 0 }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
             transition={{ duration: 0.5, loop: Infinity, ease: "linear" }}
           >
             <div className="flex items-center justify-center space-x-2">

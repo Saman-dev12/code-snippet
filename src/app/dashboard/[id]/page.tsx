@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 
 const Page = ({ params }: { params: any }) => {
-  const textareaRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(true); // State variable for loading
   const [error, setError] = useState<string | null>(null); // State variable for error
@@ -53,17 +53,18 @@ const Page = ({ params }: { params: any }) => {
             </div>
             <div className="flex">
               <div className="relative flex-1">
-                <div
+                <textarea
                   ref={textareaRef}
                   className="w-full h-64 bg-gray-700 text-white p-3 transition duration-500 ease-in-out transform"
+                  value={(!loading && error) || text}
                 >
                   {loading ? (
                     <div className="flex justify-center items-center text-white text-xl font-semibold py-8">
                       <motion.div
                         className="flex justify-center items-center h-auto p-auto "
-                        initial={{ opacity: 0, scale: 0, rotate: 0 }}
-                        animate={{ opacity: 1, scale: 1, rotate: 360 }}
-                        exit={{ opacity: 0, scale: 0, rotate: 0 }}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0 }}
                         transition={{
                           duration: 0.5,
                           loop: Infinity,
@@ -78,9 +79,9 @@ const Page = ({ params }: { params: any }) => {
                       </motion.div>
                     </div>
                   ) : (
-                    error || text
+                    <></>
                   )}
-                </div>
+                </textarea>
 
                 <button
                   className="absolute top-2 right-2 px-3 py-1 bg-gray-600 text-white rounded-md border border-gray-500 hover:bg-gray-800 transition duration-300"

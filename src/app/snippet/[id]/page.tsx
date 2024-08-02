@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { FaSave } from "react-icons/fa";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { BASE_URL } from "@/config";
 
 const Page = ({ params }: { params: any }) => {
   const router = useRouter();
@@ -51,7 +52,7 @@ const Page = ({ params }: { params: any }) => {
 
   const handleSave = async () => {
     try {
-      const res = await axios.put(`/api/snippets/makesnippet/${params.id}`, {
+      const res = await axios.put(`${BASE_URL}/api/snippets/makesnippet/${params.id}`, {
         text,
         snippetName,
         language,

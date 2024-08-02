@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { userAtom } from "@/atoms/userAtoms";
+import { BASE_URL } from "@/config";
 
 const page = () => {
   const router = useRouter();
@@ -24,7 +25,7 @@ const page = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:3000/api/users/login",
+        `${BASE_URL}/api/users/login`,
         user
       );
 

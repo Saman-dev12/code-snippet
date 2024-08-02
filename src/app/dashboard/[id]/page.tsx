@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { BASE_URL } from "@/config";
 
 const Page = ({ params }: { params: any }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -15,7 +16,7 @@ const Page = ({ params }: { params: any }) => {
     const getSnippet = async () => {
       try {
         if (params?.id) {
-          const res = await axios.get(`/api/snippets/getsnippet/${params.id}`);
+          const res = await axios.get(`${BASE_URL}/api/snippets/getsnippet/${params.id}`);
           if (res.data.data) {
             setText(res.data.data.snippet);
             setSnippetName(res.data.data.snippetName);

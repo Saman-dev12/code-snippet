@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { BASE_URL } from "@/config";
 
 const SignupPage = () => {
   const router = useRouter();
@@ -47,7 +48,7 @@ const SignupPage = () => {
     e.preventDefault();
     try {
       if (validateForm()) {
-        const res = await fetch("http://localhost:3000/api/users/signup", {
+        const res = await fetch(`${BASE_URL}/api/users/signup`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -11,6 +11,7 @@ import { useRecoilState } from "recoil";
 import { userAtom } from "@/atoms/userAtoms";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import { BASE_URL } from "@/config";
 
 interface SnippetType {
   _id: string;
@@ -60,7 +61,7 @@ const Page = () => {
     }
     const allSnippets = async () => {
       try {
-        const res = await axios.get("/api/snippets/getusersnippets");
+        const res = await axios.get(`${BASE_URL}/api/snippets/getusersnippets`);
         setSnippets(res.data);
         setLoading(false); // Set loading to false after data is fetched
       } catch (error) {
@@ -77,7 +78,7 @@ const Page = () => {
       console.log("Entered");
 
       const res = await axios.post(
-        "http://localhost:3000/api/snippets/makesnippet",
+        `${BASE_URL}/api/snippets/makesnippet`,
         snippetData,
         {
           headers: {

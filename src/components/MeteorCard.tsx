@@ -27,7 +27,7 @@ export function MeteorCard({
       if (res.status === 200) {
         toast.success(res.data.message);
         const newSnips = await axios.get("/api/snippets/getusersnippets");
-        updatedSnippets(newSnips.data);
+        updatedSnippets();
       } else {
         toast.error(res.data.error);
       }

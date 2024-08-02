@@ -184,7 +184,7 @@ const Page = () => {
                 <div className="card-wrapper" key={index}>
                   <MeteorCard
                     snippet={snippet}
-                    updatedSnippets={updatedSnippets}
+                    updatedSnippets={() => updatedSnippets([])}
                   />
                 </div>
               ))

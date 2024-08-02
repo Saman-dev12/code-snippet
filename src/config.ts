@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://code-snippet-self.vercel.app/'
+export const BASE_URL = 'https://code-snippet-self.vercel.app'

@@ -2,11 +2,19 @@ import { connect } from "@/config/db"; // Assuming a database connection functio
 import { getDataFromToken } from "@/helpers/getDataFromToken";
 import { type NextRequest, NextResponse } from "next/server";
 import SnippetModel from "@/models/Snippet.model";
+import { setCorsHeaders } from "@/corsMiddleware/corsMiddleware";
 
 // Ensure database connection before handling requests
 connect(); // Replace with your actual connection logic
 
 export async function PUT(request: NextRequest,context:any) {
+  const res = NextResponse.next();
+  const preflight = setCorsHeaders(request, res);
+
+  if (preflight) {
+    return res; // Return early if it's a preflight request
+  }
+
   try {
     // Check user authentication using the getDataFromToken function
     const userId = await getDataFromToken(request);

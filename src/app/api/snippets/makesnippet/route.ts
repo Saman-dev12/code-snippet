@@ -1,10 +1,18 @@
 import { connect } from "@/config/db";
+import { setCorsHeaders } from "@/corsMiddleware/corsMiddleware";
 import { getDataFromToken } from "@/helpers/getDataFromToken";
 import SnippetModel from "@/models/Snippet.model";
 import { type NextRequest, NextResponse } from "next/server";
 
 connect()
 export async function POST(request: NextRequest) {
+  const res = NextResponse.next();
+  const preflight = setCorsHeaders(request, res);
+
+  if (preflight) {
+    return res; // Return early if it's a preflight request
+  }
+
     try {
      const userId = getDataFromToken(request);
       const reqBody = await request.json();

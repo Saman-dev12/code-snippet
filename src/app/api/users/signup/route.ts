@@ -3,10 +3,17 @@ import User from "@/models/User.model";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import { sendMail } from "@/helpers/mailer";
+import { setCorsHeaders } from "@/corsMiddleware/corsMiddleware";
 
 connect()
 
 export async function POST(request: NextRequest){
+    const res = NextResponse.next();
+    const preflight = setCorsHeaders(request, res);
+  
+    if (preflight) {
+      return res; // Return early if it's a preflight request
+    }
     try {
         const reqBody = await request.json()
         const {username, email, password} = reqBody
